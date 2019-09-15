@@ -16,4 +16,10 @@ class SecureData
 		$field = strip_tags($field);
 		return $field;
 	}
+
+	public static function password($field)
+	{
+		$field = trim($field);
+		return $field;
+	}
 }

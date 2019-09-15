@@ -16,8 +16,8 @@ class View
 	{
 		$this->file = "views/view$action.php";
 		$this->title = $action;
-		$this->style = file_exists("public/css/" . strtolower($action) . ".css") ?
-			"public/css/" . strtolower($action) . ".css" : null;
+		$this->style = file_exists("public/css/" . lcfirst($action) . ".css") ?
+			"public/css/" . lcfirst($action) . ".css" : null;
 	}
 
 	public function generate($data)

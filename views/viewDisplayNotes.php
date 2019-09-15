@@ -28,12 +28,14 @@
 						<?php endforeach; ?>
                     </select>
                 </label>
+
                 <label>Section
                     <input type="radio" name="filterType" value="section">
                 </label>
                 <label>Etudiant
                     <input type="radio" name="filterType" value="id">
                 </label>
+
                 <button type="submit" name="filterConfirm" class="btn btn-primary">Valider</button>
             </form>
         </div>

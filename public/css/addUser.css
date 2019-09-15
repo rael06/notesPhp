@@ -1,0 +1,48 @@
+.addUser {
+    width: 65%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-self: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.addUser > * {
+    margin-bottom: 20px;
+}
+
+.addUser > h3 {
+    align-self: flex-start;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.addUser form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.addUser form > *:not(.text-danger) {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.addUser label > span {
+    margin: 5px 0;
+}
+
+.addUser > form > .roleRadio {
+    display: flex;
+    flex-direction: row;
+    font-weight: bold;
+}
+
+.addUser > form > .roleRadio > label {
+    margin-right: 20px;
+}

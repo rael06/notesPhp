@@ -37,7 +37,7 @@ class UserManager extends Model
 
 	public function updatePassword($id, $password)
 	{
-		$password = sha1($password);
+		$password = sha1(SecureData::password($password));
 		$query = "UPDATE users SET passwd = ? WHERE id = $id";
 		$pdoStatement = $this->pdo->prepare($query);
 		return $pdoStatement->execute([$password]);
@@ -58,6 +58,21 @@ class UserManager extends Model
 		$pdoStatement = $this->pdo->prepare($query);
 		$pdoStatement->execute([$value]);
 		return $pdoStatement->fetchAll(PDO::FETCH_OBJ);
+	}
+
+	public function add($userData) {
+		$password = sha1(SecureData::password($userData['password']));
+		$query = "INSERT INTO users (login, passwd, lastname, firstname, section, role) 
+					VALUES (:login, :password, :lastName, :firstName, :section, :role)";
+		$pdoStatement = $this->pdo->prepare($query);
+		return $pdoStatement->execute([
+			':login' => $userData['login'],
+			':password' => $password,
+			':lastName' => ucfirst($userData['lastName']),
+			':firstName' => ucfirst($userData['firstName']),
+			':section' => $userData['section'],
+			':role' => $userData['role']
+		]);
 	}
 }
 

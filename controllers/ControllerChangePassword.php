@@ -56,7 +56,7 @@ class ControllerChangePassword extends DefaultAbstractController
 			$this->errors['emptyNewPasswordConfirm'] = TRUE;
 		if ($_POST['newPasswordConfirm'] != $_POST['newPassword'])
 			$this->errors['notEqualsPasswords'] = TRUE;
-		if (!preg_match(Patterns::$password, $_POST['newPassword']))
+		if (!preg_match(Patterns::$password6Chars, $_POST['newPassword']))
 			$this->errors['notEnoughChars'] = TRUE;
 	}
 
