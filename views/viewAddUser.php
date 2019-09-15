@@ -6,7 +6,7 @@
 <section class="addUser">
     <h3>Ajout d'un nouvel utilisateur</h3>
     <form action="" method="post">
-		<?= isset($errors['emptyLogin']) ? "<p class='text-danger'>Veuillez remplir ce champ ! </p>" : null ?>
+		<?= isset($errors['emptyLogin']) ? "<p class='error'>Veuillez remplir ce champ ! </p>" : null ?>
         <label>
             <span>Login</span>
             <input type="text" name="login" placeholder="Login"
@@ -14,8 +14,8 @@
         </label>
 
 
-		<?= isset($errors['emptyFirstName']) ? "<p class='text-danger'>Veuillez remplir ce champ ! </p>" : null ?>
-		<?= isset($errors['badFormatFirstName']) ? "<p class='text-danger'>Le prénom ne doit contenir que des lettres ou tirets, sans espace ! </p>" : null ?>
+		<?= isset($errors['emptyFirstName']) ? "<p class='error'>Veuillez remplir ce champ ! </p>" : null ?>
+		<?= isset($errors['badFormatFirstName']) ? "<p class='error'>Le prénom ne doit contenir que des lettres ou tirets, sans espace ! </p>" : null ?>
         <label>
             <span>Prénom</span>
             <input type="text" name="firstName" placeholder="Prénom"
@@ -23,8 +23,8 @@
         </label>
 
 
-		<?= isset($errors['emptyLastName']) ? "<p class='text-danger'>Veuillez remplir ce champ ! </p>" : null ?>
-		<?= isset($errors['badFormatLastName']) ? "<p class='text-danger'>Le nom ne doit contenir que des lettres ou tirets, sans espace ! </p>" : null ?>
+		<?= isset($errors['emptyLastName']) ? "<p class='error'>Veuillez remplir ce champ ! </p>" : null ?>
+		<?= isset($errors['badFormatLastName']) ? "<p class='error'>Le nom ne doit contenir que des lettres ou tirets, sans espace ! </p>" : null ?>
         <label>
             <span>Nom</span>
             <input type="text" name="lastName" placeholder="Nom"
@@ -42,7 +42,7 @@
             </select>
         </label>
 
-		<?= isset($errors['emptyRole']) ? "<p class='text-danger'>Veuillez choisir une option ! </p>" : null ?>
+		<?= isset($errors['emptyRole']) ? "<p class='error'>Veuillez choisir une option ! </p>" : null ?>
         <div class="roleRadio">
             <label>Etudiant
                 <input type="radio" name="role" value='0'
@@ -55,7 +55,7 @@
         </div>
 
 
-		<?= isset($errors['emptyNewPassword']) ? "<p class='text-danger'>Veuillez remplir ce champ ! </p>" : null ?>
+		<?= isset($errors['emptyNewPassword']) ? "<p class='error'>Veuillez remplir ce champ ! </p>" : null ?>
         <label>
             <span>Mot de passe</span>
             <input type="password" name="newPassword" placeholder="Mot de passe"
@@ -63,8 +63,8 @@
         </label>
 
 
-		<?= isset($errors['emptyNewPasswordConfirm']) ? "<p class='text-danger'>Veuillez remplir ce champ ! </p>" : null ?>
-		<?= isset($errors['notEqualsPasswords']) ? "<p class='text-danger'>Les mots de passes ne correspondent pas ! </p>" : null ?>
+		<?= isset($errors['emptyNewPasswordConfirm']) ? "<p class='error'>Veuillez remplir ce champ ! </p>" : null ?>
+		<?= isset($errors['notEqualsPasswords']) ? "<p class='error'>Les mots de passes ne correspondent pas ! </p>" : null ?>
         <label>
             <span>Répétez le mot de passe</span>
             <input type="password" name="newPasswordConfirm" placeholder="Répétez le mot de passe"
@@ -76,7 +76,7 @@
         <input type="submit" class="btn btn-warning" value="Retour" name="cancel">
 
 		<?php if ($success) : ?>
-            <p class="text-success font-weight-bold text-center">Enregistrement terminé avec succès</p>
+            <p class="success">Enregistrement terminé avec succès</p>
 		<?php endif; ?>
     </form>
 </section>

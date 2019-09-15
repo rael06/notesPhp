@@ -27,7 +27,7 @@
     align-items: stretch;
 }
 
-.login form > *:not(.text-danger) {
+.login form > *:not(.error) {
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;

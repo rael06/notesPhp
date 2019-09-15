@@ -25,6 +25,14 @@ class UserManager extends Model
 		return $pdoStatement->fetchAll(PDO::FETCH_CLASS, User::class);
 	}
 
+	public function getById($id) {
+		$query = "SELECT id, login, lastname, firstname, section, role 
+				FROM users WHERE id = ?";
+		$pdoStatement = $this->pdo->prepare($query);
+		$pdoStatement->execute([$id]);
+		return $pdoStatement->fetchObject(User::class);
+	}
+
 	public function getByLoginPassword($login, $password)
 	{
 		$password = sha1($password);
@@ -60,14 +68,38 @@ class UserManager extends Model
 		return $pdoStatement->fetchAll(PDO::FETCH_OBJ);
 	}
 
-	public function add($userData) {
+	public function add(array $userData) {
 		$password = sha1(SecureData::password($userData['password']));
 		$query = "INSERT INTO users (login, passwd, lastname, firstname, section, role) 
 					VALUES (:login, :password, :lastName, :firstName, :section, :role)";
+
 		$pdoStatement = $this->pdo->prepare($query);
+
 		return $pdoStatement->execute([
 			':login' => $userData['login'],
 			':password' => $password,
+			':lastName' => ucfirst($userData['lastName']),
+			':firstName' => ucfirst($userData['firstName']),
+			':section' => $userData['section'],
+			':role' => $userData['role']
+		]);
+	}
+
+	public function update(array $userData)
+	{
+		$query = "UPDATE users SET 
+                 login = :login,
+                 lastname = :lastName,
+                 firstname = :firstName,
+                 section = :section,
+                 role = :role
+                 WHERE id = :id";
+
+		$pdoStatement = $this->pdo->prepare($query);
+
+		return $pdoStatement->execute([
+			':id' => $userData['id'],
+			':login' => $userData['login'],
 			':lastName' => ucfirst($userData['lastName']),
 			':firstName' => ucfirst($userData['firstName']),
 			':section' => $userData['section'],

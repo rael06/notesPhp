@@ -1,4 +1,9 @@
-.changePassword {
+.updateUser {
+    display: flex;
+    flex-direction: column;
+}
+
+.userEdition {
     width: 65%;
     height: 100%;
     display: flex;
@@ -9,17 +14,17 @@
     align-items: center;
 }
 
-.changePassword > * {
+.userEdition > * {
     margin-bottom: 20px;
 }
 
-.changePassword > h3 {
+.userEdition > h3 {
     align-self: flex-start;
     font-weight: bold;
     font-size: larger;
 }
 
-.changePassword form {
+.userEdition .updateUserForm {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -27,12 +32,22 @@
     align-items: stretch;
 }
 
-.changePassword form > *:not(.error) {
+.userEdition .updateUserForm > *:not(.error) {
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
 }
 
-.changePassword label > span {
+.userEdition label > span {
     margin: 5px 0;
+}
+
+.userEdition > .updateUserForm > .roleRadio {
+    display: flex;
+    flex-direction: row;
+    font-weight: bold;
+}
+
+.userEdition > .updateUserForm > .roleRadio > label {
+    margin-right: 20px;
 }

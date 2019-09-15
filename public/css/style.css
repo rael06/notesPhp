@@ -66,4 +66,29 @@ table th {
     font-weight: bold;
 }
 
+.error {
+    border: 1px solid darkred;
+    padding: 5px;
+    border-radius: 3px;
+    margin-bottom: 5px;
+    background: rgb(255, 202, 200);
+    color: darkred;
+}
+
+.error:before {
+    content: 'Erreur : ';
+}
+
+.success {
+    align-self: center;
+    justify-self: center;
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid darkgreen;
+    padding: 10px 20px;
+    border-radius: 3px;
+    background: rgb(201, 255, 197);
+    color: darkgreen;
+}
+
 

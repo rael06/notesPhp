@@ -27,7 +27,7 @@
     align-items: stretch;
 }
 
-.addUser form > *:not(.text-danger) {
+.addUser form > *:not(.error) {
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
