@@ -11,7 +11,6 @@ use Exception;
 class ControllerLogin extends DefaultAbstractController
 {
 	private $userManager;
-	private $view;
 	private $errors = [];
 
 	public function __construct($url)
@@ -27,7 +26,8 @@ class ControllerLogin extends DefaultAbstractController
 		$this->view->generate(['errors' => $this->errors]);
 	}
 
-	private function checkLoginPassword () {
+	private function checkLoginPassword()
+	{
 		if (isset($_POST['password']) && isset($_POST['login'])) {
 			if (empty($_POST['login']))
 				$this->errors['login'] = TRUE;
@@ -40,10 +40,8 @@ class ControllerLogin extends DefaultAbstractController
 
 				$_SESSION['authenticated'] = $_SESSION['user'] ? TRUE : FALSE;
 
-				if ($_SESSION['authenticated'])
-					header('Location:home');
-				else
-					$this->errors['badCredentials'] = TRUE;
+				if ($_SESSION['authenticated']) $this->redirect();
+				else $this->errors['badCredentials'] = TRUE;
 			}
 		}
 	}

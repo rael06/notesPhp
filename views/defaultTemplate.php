@@ -8,12 +8,37 @@
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 		<link rel="stylesheet" href="public/css/style.css">
-		<?php if($style) : ?>
+		<?php if ($style) : ?>
 			<link rel="stylesheet" href="<?= $style ?>">
 		<?php endif ?>
 		<title><?= $title ?></title>
 	</head>
 	<body>
+        <header>
+	        <?php if (isset($user) && $_GET['url'] !== 'login' && $_GET['url'] !== 'changePassword') : ?>
+                <section>
+                    <p>
+                        <span><?= $user->getFirstname() ?> <?= $user->getLastname() ?></span>
+                        , vous êtes à présent connecté(e)
+                    </p>
+                    <div>
+                        <a href="logout">Se déconnecter</a>
+                        |
+                        <a href="changePassword">Changer mot de passe</a>
+                        <?php if ($user->getRole() === '1') : ?>
+                        |
+                        <a href="addUser">Ajout utilisateur</a>
+                        |
+                        <a href="updateUser">Modification utilisateur</a>
+                        |
+                        <a href="displayNotes">Voir notes</a>
+                        |
+                        <a href="addNotes">Ajout notes</a>
+                        <?php endif; ?>
+                    </div>
+                </section>
+            <?php endif; ?>
+        </header>
 		<?= $content ?>
 	</body>
 </html>

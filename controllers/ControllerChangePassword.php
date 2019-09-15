@@ -12,18 +12,16 @@ use Exception;
 class ControllerChangePassword extends DefaultAbstractController
 {
 	private $userManager;
-	private $view;
 	private $errors = [];
 
 	public function __construct($url)
 	{
 		if (isset($url) && is_array($url) && count($url) > 1)
 			throw new Exception('Page introuvable');
-		else {
+		else
 			$this->userManager = new UserManager();
-		}
 
-		if (isset($_POST['cancel'])) header('Location:home');
+		if (isset($_POST['cancel'])) $this->redirect();
 
 		if (isset($_POST['submit'])) {
 			$this->checkFormErrors();
@@ -33,8 +31,7 @@ class ControllerChangePassword extends DefaultAbstractController
 					$this->userManager->getByLoginPassword($_POST['login'], $_POST['password']) ?
 						TRUE : FALSE;
 				if ($foundUser) {
-					if ($this->saveChanges())
-						header('Location:home');
+					if ($this->saveChanges()) $this->redirect();
 				} else {
 					$this->errors['badCredentials'] = TRUE;
 				}

@@ -23,11 +23,14 @@ class View
 	public function generate($data)
 	{
 		$content = $this->generateFile($this->file, $data);
-		$view = $this->generateFile("views/defaultTemplate.php", [
+		$viewData = [
 			'style' => $this->style,
 			'title' => $this->title,
 			'content' => $content
-		]);
+		];
+		if (isset($_SESSION['user'])) $viewData['user'] = $_SESSION['user'];
+
+		$view = $this->generateFile("views/defaultTemplate.php", $viewData);
 
 		echo $view;
 	}

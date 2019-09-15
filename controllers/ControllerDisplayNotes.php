@@ -1,26 +1,30 @@
 <?php
 
+
 namespace App\controllers;
 
+
 use App\models\entityManagers\DataManager;
+use App\models\entityManagers\UserManager;
 use App\views\View;
 use Exception;
 
-class ControllerHome extends DefaultAbstractController
+class ControllerDisplayNotes extends DefaultAbstractController
 {
-	private $dataManager;
+	private $userManager;
 
 	public function __construct($url)
 	{
 		if (isset($url) && is_array($url) && count($url) > 1)
 			throw new Exception('Page introuvable');
 		else
-			$this->dataManager = new DataManager();
+			$this->userManager = new UserManager();
 
-		$data = $this->dataManager->getByIdUser($_SESSION['user']->getId());
+		$data = $this->userManager->getAllAndData();
 
-		$this->view = new View('Home');
+		$this->view = new View('DisplayNotes');
 		$this->view->generate([
+			'user' => $_SESSION['user'],
 			'data' => $data
 		]);
 	}

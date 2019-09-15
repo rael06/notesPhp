@@ -54,6 +54,14 @@ body {
     margin: 10px 10px;
 }
 
+header > section:nth-child(1) > * {
+    margin-bottom: 20px;
+}
+
+header > section:nth-child(1) > p:nth-child(1) > span {
+    font-weight: bold;
+}
+
 table th {
     font-weight: bold;
 }
