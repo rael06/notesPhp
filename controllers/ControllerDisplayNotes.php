@@ -26,8 +26,8 @@ class ControllerDisplayNotes extends DefaultAbstractController
 		$filterType = $value = null;
 		if (isset($_POST['filterConfirm'])) {
 			$filterType = isset($_POST['filterType']) ? $_POST['filterType'] : null;
-			if (isset($_POST['user'])) $value = $_POST['user'];
-			if (isset($_POST['section'])) $value = $_POST['section'];
+			if ($filterType === 'id') $value = $_POST['user'];
+			if ($filterType === 'section') $value = $_POST['section'];
 		}
 
 		$data = $this->userManager->getUsersDataByFilter($filterType, $value);

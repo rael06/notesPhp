@@ -27,8 +27,12 @@
     font-weight: bold;
 }
 
-table {
+.displayNotes > .userNotes > table {
     width: 100%;
+}
+
+.displayNotes > .userNotes > table td {
+    padding: 5px 2px;
 }
 
 

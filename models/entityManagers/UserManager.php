@@ -2,6 +2,7 @@
 
 namespace App\models\entityManagers;
 
+use App\classes\SecureData;
 use App\models\entities\User;
 use App\models\Model;
 use PDO;
@@ -44,6 +45,7 @@ class UserManager extends Model
 
 	public function getUsersDataByFilter($filterType = null, $value = null)
 	{
+		$filterType = SecureData::text($filterType);
 		$query = "SELECT users.id, lastname, firstname, 
        				GROUP_CONCAT(subject SEPARATOR ',') AS subject, 
        				GROUP_CONCAT(result SEPARATOR ',') AS result
@@ -51,10 +53,10 @@ class UserManager extends Model
 					INNER JOIN data
 					ON data.id_user = users.id";
 
-		if ($filterType && $value) $query .= " WHERE users.$filterType = $value";
+		if ($filterType && $value) $query .= " WHERE users.$filterType = ?";
 		$query .= " GROUP BY users.id";
 		$pdoStatement = $this->pdo->prepare($query);
-		$pdoStatement->execute();
+		$pdoStatement->execute([$value]);
 		return $pdoStatement->fetchAll(PDO::FETCH_OBJ);
 	}
 }
