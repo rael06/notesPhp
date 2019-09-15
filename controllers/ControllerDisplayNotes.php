@@ -23,15 +23,23 @@ class ControllerDisplayNotes extends DefaultAbstractController
 			$this->userManager = new UserManager();
 			$this->classeManager = new ClasseManager();
 		}
+		$filterType = $value = null;
+		if (isset($_POST['filterConfirm'])) {
+			$filterType = isset($_POST['filterType']) ? $_POST['filterType'] : null;
+			if (isset($_POST['user'])) $value = $_POST['user'];
+			if (isset($_POST['section'])) $value = $_POST['section'];
+		}
 
-		$data = $this->userManager->getAllAndData();
+		$data = $this->userManager->getUsersDataByFilter($filterType, $value);
 		$classes = $this->classeManager->getAll();
+		$users = $this->userManager->getAllStudents();
 
 		$this->view = new View('DisplayNotes');
 		$this->view->generate([
 			'user' => $_SESSION['user'],
 			'data' => $data,
-			'classes' => $classes
+			'classes' => $classes,
+			'users' => $users
 		]);
 	}
 }
