@@ -1,0 +1,34 @@
+.displayNotes {
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+}
+
+.displayNotes > div:first-child {
+    padding: 30px 0;
+}
+
+.displayNotes > div:first-child h3 {
+    font-size: xx-large;
+}
+
+.displayNotes > .userNotes {
+    padding: 10px 5px;
+    border: 1px solid lightslategrey;
+    border-radius: 3px;
+    margin-bottom: 20px;
+}
+
+.displayNotes > .userNotes > * {
+    margin-bottom: 10px;
+}
+
+.displayNotes > .userNotes > p:first-child {
+    font-weight: bold;
+}
+
+table {
+    width: 100%;
+}
+
+

@@ -35,10 +35,13 @@ class UserManager extends Model
 
 	public function getAllAndData()
 	{
-		$query = "SELECT lastname, firstname, subject, result 
+		$query = "SELECT lastname, firstname, 
+       				GROUP_CONCAT(subject SEPARATOR ',') AS subject, 
+       				GROUP_CONCAT(result SEPARATOR ',') AS result
 					FROM users
 					INNER JOIN data
-					ON data.id_user = users.id";
+					ON data.id_user = users.id
+					GROUP BY users.id";
 		$pdoStatement = $this->pdo->query($query);
 		return $pdoStatement->fetchAll(PDO::FETCH_OBJ);
 	}

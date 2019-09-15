@@ -1,4 +1,4 @@
-section {
+.login {
     width: 65%;
     height: 100%;
     display: flex;
@@ -9,11 +9,17 @@ section {
     align-items: center;
 }
 
-section > * {
+.login > * {
     margin-bottom: 20px;
 }
 
-form {
+.login > h3 {
+    align-self: flex-start;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.login form {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -21,18 +27,12 @@ form {
     align-items: stretch;
 }
 
-section > h3 {
-    align-self: flex-start;
-    font-weight: bold;
-    font-size: larger;
-}
-
-form > *:not(.text-danger) {
+.login form > *:not(.text-danger) {
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
 }
 
-label > span {
+.login label > span {
     margin: 5px 0;
 }

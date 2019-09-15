@@ -1,20 +1,20 @@
-section {
+.home {
     display: flex;
     flex-direction: column;
     justify-self: center;
 }
 
-table {
+.home table {
     width: 30%;
     align-self: center;
 }
 
-table > tr {
+.home table > tr {
     display: grid;
     grid-template-columns: 3fr 2fr;
 }
 
-table td, table th {
+.home table td, table th {
     border: 1px solid lightslategrey;
     padding: 5px 2px;
     text-align: center;

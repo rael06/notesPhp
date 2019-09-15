@@ -2,7 +2,8 @@
 /** @noinspection PhpUndefinedVariableInspection */
 /** @noinspection PhpUndefinedMethodInspection */
 ?>
-<section>
+
+<section class="home">
     <p>Voici vos notes :</p>
     <table>
         <tr>

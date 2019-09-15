@@ -1,5 +1,5 @@
 <?php /** @noinspection PhpUndefinedVariableInspection */ ?>
-<section>
+<section class="changePassword">
 	<h3>Changement de mot de passe</h3>
 	<?= isset($errors['badCredentials']) ? "<p class='text-danger'>Mauvais identifiants ! </p>" : null ?>
 	<form action="" method="post">
