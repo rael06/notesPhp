@@ -8,7 +8,6 @@ use PDO;
 
 class UserManager extends Model
 {
-
 	public function getAll()
 	{
 		$query = "SELECT id, login, passwd, lastname, firstname, section, role FROM users";
@@ -16,12 +15,20 @@ class UserManager extends Model
 		return $pdoStatement->fetchAll(PDO::FETCH_CLASS, User::class);
 	}
 
-	public function checkLogin($login, $password) {
+	public function getByLoginPassword($login, $password) {
 		$password = sha1($password);
-		$query = "SELECT id FROM users WHERE login = ? AND passwd = ?";
+		$query = "SELECT id, login, passwd, lastname, firstname, section, role 
+				FROM users WHERE login = ? AND passwd = ?";
 		$pdoStatement = $this->pdo->prepare($query);
 		$pdoStatement->execute([$login, $password]);
-		return $pdoStatement->rowCount() > 0 ? TRUE : FALSE;
+		return $pdoStatement->fetchObject(User::class);
+	}
+
+	public function updatePassword($id, $password) {
+		$password = sha1($password);
+		$query = "UPDATE users SET passwd = ? WHERE id = $id";
+		$pdoStatement = $this->pdo->prepare($query);
+		return $pdoStatement->execute([$password]);
 	}
 }
 

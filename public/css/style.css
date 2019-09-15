@@ -46,5 +46,16 @@ table {
 html, body {
     height: 100%;
     font-family: Tahoma, Arial;
-    display: grid;
+    display: flex;
+    flex-direction: column;
 }
+
+body {
+    margin: 10px 10px;
+}
+
+table th {
+    font-weight: bold;
+}
+
+
