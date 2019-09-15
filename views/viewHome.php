@@ -1,6 +1,7 @@
 <?php
+/** @noinspection PhpUndefinedVariableInspection */
+/** @noinspection PhpUndefinedMethodInspection */
 ?>
-<!--suppress HtmlUnknownTarget -->
 <section>
     <p>Voici vos notes :</p>
     <table>
