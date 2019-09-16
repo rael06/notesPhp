@@ -57,9 +57,14 @@ class ControllerDisplayNotes extends DefaultAbstractController
 
 	private function saveChanges()
 	{
+		//$data is set to compare each result in data with posted result in order to not update all data table
+		//but only for results changed
 		$data = $this->dataManager->getAll();
+
 		$notesData = [];
 		foreach ($_POST['notes'] as $id => $note) {
+
+			//comparison
 			$match = FALSE;
 			foreach ($data as $d) {
 				if ($d->getId() == $id && $d->getResult() == $note) {
