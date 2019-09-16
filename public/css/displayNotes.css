@@ -28,12 +28,18 @@
     font-weight: bold;
 }
 
-.displayNotes > .usersNotes > table {
-    width: 100%;
+.displayNotes > .usersNotes > .userNotes {
+    display: flex;
+    flex-wrap: wrap;
 }
 
-.displayNotes > .usersNotes > table td {
-    padding: 5px 2px;
+.displayNotes > .usersNotes > .userNotes > .userNote {
+    margin: 10px;
+    border-radius: 3px;
+    padding: 10px;
+    border: 1px solid lightslategrey;
 }
+
+
 
 

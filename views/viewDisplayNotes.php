@@ -11,9 +11,9 @@
                 <label>
                     <select name="section">
 						<?php foreach ($classes as $c) : ?>
-                                <option <?= isset($_POST['section']) && $_POST['section'] === $c->getId() ? 'selected' : null ?>
-                                        value="<?= $c->getId() ?>"><?= $c->getSection() ?>
-                                </option>
+                            <option <?= isset($_POST['section']) && $_POST['section'] === $c->getId() ? 'selected' : null ?>
+                                    value="<?= $c->getId() ?>"><?= $c->getSection() ?>
+                            </option>
 						<?php endforeach; ?>
                     </select>
                 </label>
@@ -21,10 +21,10 @@
                 <label>
                     <select name="user">
 						<?php foreach ($users as $u) : ?>
-                                <option <?= isset($_POST['user']) && $_POST['user'] === $u->getId() ? 'selected' : null ?>
-                                        value="<?= $u->getId() ?>">
-									<?= ucfirst($u->getFirstname()) ?> <?= ucfirst($u->getLastname()) ?>
-                                </option>
+                            <option <?= isset($_POST['user']) && $_POST['user'] === $u->getId() ? 'selected' : null ?>
+                                    value="<?= $u->getId() ?>">
+								<?= ucfirst($u->getFirstname()) ?> <?= ucfirst($u->getLastname()) ?>
+                            </option>
 						<?php endforeach; ?>
                     </select>
                 </label>
@@ -42,28 +42,17 @@
     </div>
 
 	<?php foreach ($data as $d) : ?>
-        <div class="usersNotes">
-            <p><?= ucfirst($d->firstname) ?> <?= ucfirst($d->lastname) ?></p>
-            <div class="userNotes">
-	            <?php foreach (explode(',', $d->notes) as $note) : ?>
-                    <div>
-                        <p><?= $subject ?></p>
-                    </div>
-	            <?php endforeach; ?>
+    <div class="usersNotes">
+        <p><?= ucfirst($d->firstname) ?> <?= ucfirst($d->lastname) ?></p>
+        <div class="userNotes">
+			<?php for ($i = 0; $i < count(explode(',', $d->notes)); $i++) : ?>
+            <div class="userNote">
+                <p><?= explode(',', $d->subject)[$i] ?></p>
+                <input type="text" name="notes[]" value="<?= explode(',', $d->result)[$i] ?>">
             </div>
-            <table>
-                <tr>
-					<?php foreach (explode(',', $d->subject) as $subject) : ?>
-                        <td><?= $subject ?></td>
-					<?php endforeach; ?>
-                </tr>
-                <tr>
-					<?php foreach (explode(',', $d->result) as $result) : ?>
-                        <td><input type="text" name="notes[]" value="<?= $result ?>"></td>
-					<?php endforeach; ?>
-                </tr>
-            </table>
+            <?php endfor; ?>
         </div>
-	<?php endforeach; ?>
+    </div>
+    <?php endforeach; ?>
 </section>
 
