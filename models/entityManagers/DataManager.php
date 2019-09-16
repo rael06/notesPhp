@@ -10,6 +10,14 @@ use PDO;
 
 class DataManager extends Model
 {
+
+	public function getAll()
+	{
+		$query = "SELECT id, id_user, subject, result FROM data";
+		$pdoStatement = $this->pdo->query($query);
+		return $pdoStatement->fetchAll(PDO::FETCH_CLASS, Data::class);
+	}
+
 	public function getByIdUser($idUser)
 	{
 		$query = "SELECT id, id_user, subject, result FROM data

@@ -57,9 +57,18 @@ class ControllerDisplayNotes extends DefaultAbstractController
 
 	private function saveChanges()
 	{
+		$data = $this->dataManager->getAll();
 		$notesData = [];
 		foreach ($_POST['notes'] as $id => $note) {
-			if (!empty($note) || $note === '0') {
+			$match = FALSE;
+			foreach ($data as $d) {
+				if ($d->getId() == $id && $d->getResult() == $note) {
+					$match = true;
+					break;
+				}
+			}
+
+			if ((!empty($note) || $note === '0') && !$match) {
 				$noteData = [
 					'id' => $id,
 					'result' => $note
@@ -67,7 +76,6 @@ class ControllerDisplayNotes extends DefaultAbstractController
 				$notesData[] = $noteData;
 			}
 		}
-
 		$updateErrors = $this->dataManager->updateNotes($notesData);
 		return !in_array(FALSE, $updateErrors);
 	}
