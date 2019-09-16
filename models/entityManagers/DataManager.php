@@ -35,4 +35,15 @@ class DataManager extends Model
 
 		return $pdoStatement->execute($params);
 	}
+
+	public function updateNotes(array $notesData)
+	{
+		$updateErrors = [];
+		$query = "UPDATE data SET result = ? WHERE id = ?";
+		$pdoStatement = $this->pdo->prepare($query);
+		foreach ($notesData as $noteData) {
+			$updateErrors[] = $pdoStatement->execute([$noteData['result'], $noteData['id']]);
+		}
+		return $updateErrors;
+	}
 }

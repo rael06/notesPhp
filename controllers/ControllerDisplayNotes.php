@@ -5,6 +5,7 @@ namespace App\controllers;
 
 
 use App\models\entityManagers\ClasseManager;
+use App\models\entityManagers\DataManager;
 use App\models\entityManagers\UserManager;
 use App\views\View;
 use Exception;
@@ -13,6 +14,8 @@ class ControllerDisplayNotes extends DefaultAbstractController
 {
 	private $userManager;
 	private $classeManager;
+	private $dataManager;
+	private $success;
 
 	public function __construct($url)
 	{
@@ -21,17 +24,27 @@ class ControllerDisplayNotes extends DefaultAbstractController
 		else {
 			$this->userManager = new UserManager();
 			$this->classeManager = new ClasseManager();
-		}
-		$filterType = $value = null;
-		if (isset($_POST['filterConfirm'])) {
-			$filterType = isset($_POST['filterType']) ? $_POST['filterType'] : null;
-			if ($filterType === 'id') $value = $_POST['user'];
-			if ($filterType === 'section') $value = $_POST['section'];
+			$this->dataManager = new DataManager();
 		}
 
-		$data = $this->userManager->getUsersDataByFilter($filterType, $value);
+		if (!isset($_SESSION['filterType']) && !isset($_SESSION['value']))
+			$_SESSION['filterType'] = $_SESSION['value'] = null;
+
+		if (isset($_POST['filterConfirm'])) {
+			$_SESSION['filterType'] = isset($_POST['filterType']) ? $_POST['filterType'] : null;
+			if ($_SESSION['filterType'] === 'id') $_SESSION['value'] = $_POST['user'];
+			elseif ($_SESSION['filterType'] === 'section') $_SESSION['value'] = $_POST['section'];
+		}
+
+		$data = $this->userManager->getUsersDataByFilter($_SESSION['filterType'], $_SESSION['value']);
+
 		$classes = $this->classeManager->getAll();
 		$users = $this->userManager->getAllStudents();
+
+		if (isset($_POST['updateButton'])) {
+			$this->success = $this->saveChanges();
+			$data = $this->userManager->getUsersDataByFilter($_SESSION['filterType'], $_SESSION['value']);
+		}
 
 		$this->view = new View('DisplayNotes');
 		$this->view->generate([
@@ -40,5 +53,22 @@ class ControllerDisplayNotes extends DefaultAbstractController
 			'classes' => $classes,
 			'users' => $users
 		]);
+	}
+
+	private function saveChanges()
+	{
+		$notesData = [];
+		foreach ($_POST['notes'] as $id => $note) {
+			if (!empty($note) || $note === '0') {
+				$noteData = [
+					'id' => $id,
+					'result' => $note
+				];
+				$notesData[] = $noteData;
+			}
+		}
+
+		$updateErrors = $this->dataManager->updateNotes($notesData);
+		return !in_array(FALSE, $updateErrors);
 	}
 }

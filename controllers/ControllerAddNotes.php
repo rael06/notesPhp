@@ -74,7 +74,7 @@ class ControllerAddNotes extends DefaultAbstractController
 	{
 		$notesData = [];
 		foreach ($_POST['notes'] as $id_user => $note) {
-			if (!empty($note)) {
+			if (!empty($note) || $note === '0') {
 				$noteData = [
 					'id_user' => $id_user,
 					'subject' => $_POST['subject'],

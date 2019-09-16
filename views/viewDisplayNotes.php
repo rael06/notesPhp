@@ -7,7 +7,7 @@
     <div>
         <h3>Filtres</h3>
         <div class="filters">
-            <form action="" method="post">
+            <form action="" id="form" method="post">
                 <label>
                     <select name="section">
 						<?php foreach ($classes as $c) : ?>
@@ -37,22 +37,26 @@
                 </label>
 
                 <button type="submit" name="filterConfirm" class="btn btn-primary">Valider</button>
+                <button type="submit" name="filterConfirm" class="btn btn-primary">Voir tout</button>
             </form>
         </div>
     </div>
 
+    <input form="form" type="submit" value="Mettre à jour" name="updateButton" class="btn btn-primary">
+    <input form="form" type="submit" value="Annuler" name="cancelUpdateButton" class="btn btn-warning">
+
 	<?php foreach ($data as $d) : ?>
-    <div class="usersNotes">
-        <p><?= ucfirst($d->firstname) ?> <?= ucfirst($d->lastname) ?></p>
-        <div class="userNotes">
-			<?php for ($i = 0; $i < count(explode(',', $d->notes)); $i++) : ?>
-            <div class="userNote">
-                <p><?= explode(',', $d->subject)[$i] ?></p>
-                <input type="text" name="notes[]" value="<?= explode(',', $d->result)[$i] ?>">
+        <div class="usersNotes">
+            <p><?= ucfirst($d->firstname) ?> <?= ucfirst($d->lastname) ?></p>
+            <div class="userNotes">
+				<?php for ($i = 0; $i < count(explode(',', $d->notes)); $i++) : ?>
+                    <div class="userNote">
+                        <p><?= explode(',', $d->subject)[$i] ?></p>
+                        <input form="form" type="text" name="notes[<?= explode(',', $d->notes)[$i] ?>]" value="<?= explode(',', $d->result)[$i] ?>">
+                    </div>
+				<?php endfor; ?>
             </div>
-            <?php endfor; ?>
         </div>
-    </div>
-    <?php endforeach; ?>
+	<?php endforeach; ?>
 </section>
 
