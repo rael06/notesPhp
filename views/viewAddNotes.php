@@ -30,12 +30,14 @@
         <section class="userNotesEdition">
             <h3>Nouvelle note <?= $section ? $section->getSection() : null ?></h3>
             <div class="notesForm">
+
 				<?= isset($errors['emptyNoteType']) ? "<p class='error'>Veuillez remplir ce champ ! </p>" : null ?>
                 <label>
                     <span>Matière</span>
                     <input form="form" type="text" name="noteType" placeholder="Matière"
                            value="<?= isset($_POST['noteType']) ? $_POST['noteType'] : null ?>">
                 </label>
+
 				<?php for ($i = 0; $i < count($users); $i++) : ?>
                     <label>
                         <span><?= $users[$i]->getFirstname() ?> <?= $users[$i]->getLastname() ?></span>

@@ -3,8 +3,6 @@
 
 namespace App\controllers;
 
-
-use App\classes\Patterns;
 use App\models\entityManagers\ClasseManager;
 use App\models\entityManagers\UserManager;
 use App\views\View;
@@ -67,9 +65,6 @@ class ControllerAddNotes extends DefaultAbstractController
 	{
 		if (empty($_POST['noteType']))
 			$this->errors['emptyNoteType'] = TRUE;
-
-//		if (!preg_match(Patterns::$number, $_POST['note']))
-//			$this->errors['badFormatNote'] = TRUE;
 	}
 
 	private function saveChanges()
