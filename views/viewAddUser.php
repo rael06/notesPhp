@@ -32,7 +32,7 @@
         </label>
 
 
-        <label>
+        <label>Section
             <select name="section">
 				<?php foreach ($classes as $c) : ?>
                     <option <?= isset($_POST['section']) && $_POST['section'] === $c->getId() ? 'selected' : null ?>

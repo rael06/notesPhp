@@ -15,7 +15,7 @@
 	</head>
 	<body>
         <header>
-	        <?php if (isset($user) && isset($_GET['url']) && $_GET['url'] !== 'login' && $_GET['url'] !== 'changePassword') : ?>
+	        <?php if (isset($user) && isset($_GET['url']) && $_GET['url'] !== 'login') : ?>
                 <section>
                     <p>
                         <span><?= $user->getFirstname() ?> <?= $user->getLastname() ?></span>

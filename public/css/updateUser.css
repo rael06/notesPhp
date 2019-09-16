@@ -1,6 +1,20 @@
 .updateUser {
     display: flex;
     flex-direction: column;
+    flex: 1;
+    align-items: center;
+}
+
+.userSelection {
+    margin-top: 50px;
+    display: flex;
+}
+
+.userSelection label {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-right: 30px;
 }
 
 .userEdition {
@@ -20,8 +34,6 @@
 
 .userEdition > h3 {
     align-self: flex-start;
-    font-weight: bold;
-    font-size: larger;
 }
 
 .userEdition .updateUserForm {
@@ -50,4 +62,9 @@
 
 .userEdition > .updateUserForm > .roleRadio > label {
     margin-right: 20px;
+}
+
+.updateUser .success {
+    align-self: center;
+    justify-self: center;
 }

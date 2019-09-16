@@ -5,16 +5,18 @@
 <section class="updateUser">
     <section class="userSelection">
         <form action="" method="post" id="form"></form>
-        <label>
-            <select form="form" name="user">
-				<?php foreach ($users as $u) : ?>
-                    <option <?= isset($_POST['user']) && $_POST['user'] === $u->getId() ? 'selected' : null ?>
-                            value="<?= $u->getId() ?>">
-						<?= ucfirst($u->getFirstname()) ?> <?= ucfirst($u->getLastname()) ?>
-                    </option>
-				<?php endforeach; ?>
-            </select>
-        </label>
+        <div>
+            <label>Utilisateur
+                <select form="form" name="user">
+					<?php foreach ($users as $u) : ?>
+                        <option <?= isset($_POST['user']) && $_POST['user'] === $u->getId() ? 'selected' : null ?>
+                                value="<?= $u->getId() ?>">
+							<?= ucfirst($u->getFirstname()) ?> <?= ucfirst($u->getLastname()) ?>
+                        </option>
+					<?php endforeach; ?>
+                </select>
+            </label>
+        </div>
         <input form="form" type="submit" name="userSelectionConfirm" class="btn btn-primary" value="Valider">
     </section>
 
@@ -48,7 +50,7 @@
                 </label>
 
 
-                <label>
+                <label>Section
                     <select form="form" name="section">
                         <option <?= isset($user) && $user->getSection() === '0' ? 'selected' : null ?> value="0">Sans
                         </option>

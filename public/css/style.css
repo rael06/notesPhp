@@ -49,9 +49,8 @@ html, body {
     display: flex;
     flex-direction: column;
 }
-
-body {
-    margin: 10px 10px;
+header {
+    margin: 10px;
 }
 
 header > section:nth-child(1) > * {
@@ -64,6 +63,27 @@ header > section:nth-child(1) > p:nth-child(1) > span {
 
 table th {
     font-weight: bold;
+}
+
+select {
+    margin-top: 10px;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+
+input {
+    margin-top: 10px;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+
+label {
+    font-weight: bold;
+}
+
+h3 {
+    font-weight: bold;
+    font-size: xx-large;
 }
 
 .error {
