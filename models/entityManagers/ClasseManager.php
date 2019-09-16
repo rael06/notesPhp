@@ -16,4 +16,11 @@ class ClasseManager extends Model
 		$pdoStatement = $this->pdo->query($query);
 		return $pdoStatement->fetchAll(PDO::FETCH_CLASS, Classe::class);
 	}
+
+	public function getById($id) {
+		$query = "SELECT id, section FROM classes WHERE id = ?";
+		$pdoStatement = $this->pdo->prepare($query);
+		$pdoStatement->execute([$id]);
+		return $pdoStatement->fetchObject(Classe::class);
+	}
 }

@@ -1,0 +1,71 @@
+.addNotes {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: center;
+}
+
+.sectionSelection {
+    margin-top: 50px;
+    display: flex;
+}
+
+.sectionSelection label {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-right: 30px;
+}
+
+.userNotesEdition {
+    width: 65%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-self: center;
+    margin-top: 30px;
+    align-items: center;
+}
+
+.userNotesEdition > * {
+    margin-bottom: 20px;
+}
+
+.userNotesEdition > h3 {
+    align-self: flex-start;
+}
+
+.userNotesEdition .notesForm {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.userNotesEdition .notesForm > *:not(.error) {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.userNotesEdition label > span {
+    margin: 5px 0;
+}
+
+.userNotesEdition > .notesForm > .roleRadio {
+    display: flex;
+    flex-direction: row;
+    font-weight: bold;
+}
+
+.userNotesEdition > .notesForm > .roleRadio > label {
+    margin-right: 20px;
+}
+
+.addNotes .success {
+    align-self: center;
+    justify-self: center;
+}
+

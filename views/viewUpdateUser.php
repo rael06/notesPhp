@@ -79,10 +79,6 @@
 
                 <input form="form" type="submit" class="btn btn-primary" value="Envoi" name="submit">
                 <input form="form" type="submit" class="btn btn-warning" value="Retour" name="cancel">
-
-				<?php if ($success) : ?>
-                    <p class="text-success font-weight-bold text-center">Enregistrement terminé avec succès</p>
-				<?php endif; ?>
             </div>
         </section>
 	<?php endif; ?>

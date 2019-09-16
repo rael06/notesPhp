@@ -11,21 +11,22 @@ class UserManager extends Model
 {
 	public function getAll()
 	{
-		$query = "SELECT id, login, passwd, lastname, firstname, section, role FROM users";
+		$query = "SELECT id, login, lastname, firstname, section, role FROM users";
 		$pdoStatement = $this->pdo->query($query);
 		return $pdoStatement->fetchAll(PDO::FETCH_CLASS, User::class);
 	}
 
 	public function getAllStudents()
 	{
-		$query = "SELECT id, login, passwd, lastname, firstname, section, role 
+		$query = "SELECT id, login, lastname, firstname, section, role 
 					FROM users 
 					WHERE role = 0";
 		$pdoStatement = $this->pdo->query($query);
 		return $pdoStatement->fetchAll(PDO::FETCH_CLASS, User::class);
 	}
 
-	public function getById($id) {
+	public function getById($id)
+	{
 		$query = "SELECT id, login, lastname, firstname, section, role 
 				FROM users WHERE id = ?";
 		$pdoStatement = $this->pdo->prepare($query);
@@ -41,6 +42,16 @@ class UserManager extends Model
 		$pdoStatement = $this->pdo->prepare($query);
 		$pdoStatement->execute([$login, $password]);
 		return $pdoStatement->fetchObject(User::class);
+	}
+
+	public function getBySection($section)
+	{
+		$query = "SELECT id, login, lastname, firstname, section, role 
+					FROM users 
+					WHERE section = ?";
+		$pdoStatement = $this->pdo->prepare($query);
+		$pdoStatement->execute([$section]);
+		return $pdoStatement->fetchAll(PDO::FETCH_CLASS, User::class);
 	}
 
 	public function updatePassword($id, $password)
@@ -68,7 +79,8 @@ class UserManager extends Model
 		return $pdoStatement->fetchAll(PDO::FETCH_OBJ);
 	}
 
-	public function add(array $userData) {
+	public function add(array $userData)
+	{
 		$password = sha1(SecureData::password($userData['password']));
 		$query = "INSERT INTO users (login, passwd, lastname, firstname, section, role) 
 					VALUES (:login, :password, :lastName, :firstName, :section, :role)";
