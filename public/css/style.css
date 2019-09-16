@@ -111,4 +111,9 @@ h3 {
     color: darkgreen;
 }
 
+.btn {
+    align-items: center;
+    justify-content: center;
+}
+
 

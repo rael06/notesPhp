@@ -8,6 +8,7 @@
 .userSelection {
     margin-top: 50px;
     display: flex;
+    align-items: flex-end;
 }
 
 .userSelection label {
