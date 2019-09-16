@@ -5,7 +5,6 @@ namespace App\controllers;
 
 
 use App\models\entityManagers\ClasseManager;
-use App\models\entityManagers\DataManager;
 use App\models\entityManagers\UserManager;
 use App\views\View;
 use Exception;
