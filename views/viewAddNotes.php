@@ -22,20 +22,16 @@
         <input form="form" type="submit" name="sectionSelectionConfirm" class="btn btn-primary" value="Valider">
     </section>
 
-	<?php
-	var_dump($_POST);
-	?>
-
 	<?php if ($users || count($errors) !== 0) : ?>
         <section class="userNotesEdition">
             <h3>Nouvelle note <?= $section ? $section->getSection() : null ?></h3>
             <div class="notesForm">
 
-				<?= isset($errors['emptyNoteType']) ? "<p class='error'>Veuillez remplir ce champ ! </p>" : null ?>
+				<?= isset($errors['emptySubject']) ? "<p class='error'>Veuillez remplir ce champ ! </p>" : null ?>
                 <label>
                     <span>Matière</span>
-                    <input form="form" type="text" name="noteType" placeholder="Matière"
-                           value="<?= isset($_POST['noteType']) ? $_POST['noteType'] : null ?>">
+                    <input form="form" type="text" name="subject" placeholder="Matière"
+                           value="<?= isset($_POST['subject']) ? $_POST['subject'] : null ?>">
                 </label>
 
 				<?php for ($i = 0; $i < count($users); $i++) : ?>

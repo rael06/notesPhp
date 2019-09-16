@@ -4,6 +4,7 @@
 namespace App\controllers;
 
 use App\models\entityManagers\ClasseManager;
+use App\models\entityManagers\DataManager;
 use App\models\entityManagers\UserManager;
 use App\views\View;
 use Exception;
@@ -15,6 +16,7 @@ class ControllerAddNotes extends DefaultAbstractController
 	private $classeManager;
 	private $success;
 	private $section;
+	private $dataManager;
 
 	public function __construct($url)
 	{
@@ -23,6 +25,7 @@ class ControllerAddNotes extends DefaultAbstractController
 		else {
 			$this->userManager = new UserManager();
 			$this->classeManager = new ClasseManager();
+			$this->dataManager = new DataManager();
 		}
 
 		$classes = $this->classeManager->getAll();
@@ -45,9 +48,9 @@ class ControllerAddNotes extends DefaultAbstractController
 		if (isset($_POST['submit'])) {
 			$this->checkFormErrors();
 			if (count($this->errors) === 0) {
-//				$this->success = $this->saveChanges();
+				$this->success = $this->saveChanges();
 				//reset $_POST on user edition success
-				if ($this->success) $_POST=[];
+				if ($this->success) $_POST = [];
 			}
 		}
 
@@ -63,20 +66,24 @@ class ControllerAddNotes extends DefaultAbstractController
 
 	private function checkFormErrors()
 	{
-		if (empty($_POST['noteType']))
-			$this->errors['emptyNoteType'] = TRUE;
+		if (empty($_POST['subject']))
+			$this->errors['emptySubject'] = TRUE;
 	}
 
 	private function saveChanges()
 	{
-		$userData = [
-			'id' => $_POST['userId'],
-			'login' => $_POST['login'],
-			'firstName' => $_POST['firstName'],
-			'lastName' => $_POST['lastName'],
-			'section' => $_POST['section'],
-			'role' => $_POST['role']
-		];
-		return $this->userManager->update($userData);
+		$notesData = [];
+		foreach ($_POST['notes'] as $id_user => $note) {
+			if (!empty($note)) {
+				$noteData = [
+					'id_user' => $id_user,
+					'subject' => $_POST['subject'],
+					'result' => $note
+				];
+				$notesData[] = $noteData;
+			}
+		}
+
+		return $this->dataManager->addNotes($notesData);
 	}
 }

@@ -14,6 +14,6 @@
             <input type="password" name="password" placeholder="Votre mot de passe" value="<?= isset($_POST['password']) ? $_POST['password'] : '' ?>">
         </label>
 
-        <input type="submit" class="btn btn-primary" value="Envoi" name="submit">
+        <button type="submit" class="text-center btn btn-primary" value="Envoi" name="submit">Envoi</button>
 	</form>
 </section>

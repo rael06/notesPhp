@@ -66,6 +66,7 @@ class UserManager extends Model
 	{
 		$filterType = SecureData::text($filterType);
 		$query = "SELECT users.id, lastname, firstname, 
+       				GROUP_CONCAT(data.id SEPARATOR ',') AS notes,
        				GROUP_CONCAT(subject SEPARATOR ',') AS subject, 
        				GROUP_CONCAT(result SEPARATOR ',') AS result
 					FROM users

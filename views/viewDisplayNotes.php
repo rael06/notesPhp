@@ -42,8 +42,15 @@
     </div>
 
 	<?php foreach ($data as $d) : ?>
-        <div class="userNotes">
+        <div class="usersNotes">
             <p><?= ucfirst($d->firstname) ?> <?= ucfirst($d->lastname) ?></p>
+            <div class="userNotes">
+	            <?php foreach (explode(',', $d->notes) as $note) : ?>
+                    <div>
+                        <p><?= $subject ?></p>
+                    </div>
+	            <?php endforeach; ?>
+            </div>
             <table>
                 <tr>
 					<?php foreach (explode(',', $d->subject) as $subject) : ?>
@@ -52,7 +59,7 @@
                 </tr>
                 <tr>
 					<?php foreach (explode(',', $d->result) as $result) : ?>
-                        <td><input type="text" name="notes" value="<?= $result ?>"></td>
+                        <td><input type="text" name="notes[]" value="<?= $result ?>"></td>
 					<?php endforeach; ?>
                 </tr>
             </table>
