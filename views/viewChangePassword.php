@@ -14,7 +14,7 @@
             <input type="password" name="password" placeholder="Votre mot de passe" value="<?= isset($_POST['password']) ? $_POST['password'] : '' ?>">
         </label>
 		<?= isset($errors['emptyNewPassword']) ? "<p class='error'>Veuillez remplir ce champ ! </p>" : null ?>
-		<?= isset($errors['notEnoughChars']) ? "<p class='error'>Le mot de passe doit contenir au moins 6 caractères ! </p>" : null ?>
+		<?= isset($errors['notEnoughChars']) ? "<p class='error'>Le mot de passe doit contenir au moins 6 caractères (des lettres et au minimum un chiffre) ! </p>" : null ?>
         <label>
             <span>Nouveau mot de passe (6 caractères minimum)</span>
             <input type="password" name="newPassword" placeholder="Nouveau mot de passe (au moins 6 caractères)" value="<?= isset($_POST['newPassword']) ? $_POST['newPassword'] : '' ?>">
