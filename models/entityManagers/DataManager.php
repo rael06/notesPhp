@@ -46,12 +46,23 @@ class DataManager extends Model
 
 	public function updateNotes(array $notesData)
 	{
-		$updateErrors = [];
+		$errors = [];
 		$query = "UPDATE data SET result = ? WHERE id = ?";
 		$pdoStatement = $this->pdo->prepare($query);
 		foreach ($notesData as $noteData) {
-			$updateErrors[] = $pdoStatement->execute([$noteData['result'], $noteData['id']]);
+			$errors[] = $pdoStatement->execute([$noteData['result'], $noteData['id']]);
 		}
-		return $updateErrors;
+		return $errors;
+	}
+
+	public function deleteNotes(array $notesToDelete)
+	{
+		$errors = [];
+		$query = "DELETE FROM data WHERE id = ?";
+		$pdoStatement = $this->pdo->prepare($query);
+		foreach ($notesToDelete as $noteData) {
+			$errors[] = $pdoStatement->execute([$noteData['id']]);
+		}
+		return $errors;
 	}
 }

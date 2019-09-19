@@ -42,11 +42,12 @@
         </div>
     </div>
 
-    <input form="form" type="submit" value="Mettre à jour" name="updateButton" class="btn btn-primary">
-    <input form="form" type="submit" value="Annuler" name="cancelUpdateButton" class="btn btn-warning">
+    <input form="form" type="submit" value="Valider les modifications" name="updateButton" class="btn btn-primary">
+    <input form="form" type="submit" value="Annuler les modifications" name="cancelUpdateButton" class="btn btn-warning">
 
+    <div class="usersContainer">
 	<?php foreach ($data as $d) : ?>
-        <div class="usersNotes">
+        <div class="userInfo">
             <p><?= ucfirst($d->firstname) ?> <?= ucfirst($d->lastname) ?></p>
             <div class="userNotes">
 				<?php for ($i = 0; $i < count(explode(',', $d->notes)); $i++) : ?>
@@ -58,5 +59,6 @@
             </div>
         </div>
 	<?php endforeach; ?>
+    </div>
 </section>
 

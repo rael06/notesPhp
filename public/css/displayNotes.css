@@ -13,27 +13,31 @@
     font-size: xx-large;
 }
 
-.displayNotes > .usersNotes {
+.usersContainer {
+    margin-top: 20px;
+}
+
+.userInfo {
     padding: 10px 5px;
     border: 1px solid lightslategrey;
     border-radius: 3px;
     margin-bottom: 20px;
 }
 
-.displayNotes > .usersNotes > * {
+.userInfo > * {
     margin-bottom: 10px;
 }
 
-.displayNotes > .usersNotes > p:first-child {
+.userInfo > p:first-child {
     font-weight: bold;
 }
 
-.displayNotes > .usersNotes > .userNotes {
+.userInfo > .userNotes {
     display: flex;
     flex-wrap: wrap;
 }
 
-.displayNotes > .usersNotes > .userNotes > .userNote {
+.userInfo > .userNotes > .userNote {
     margin: 10px;
     border-radius: 3px;
     padding: 10px;

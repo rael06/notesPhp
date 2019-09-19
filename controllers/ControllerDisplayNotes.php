@@ -62,6 +62,10 @@ class ControllerDisplayNotes extends DefaultAbstractController
 		$data = $this->dataManager->getAll();
 
 		$notesData = [];
+		$notesToDelete = [];
+		$updateErrors = [];
+		$deleteErrors = [];
+
 		foreach ($_POST['notes'] as $id => $note) {
 
 			//comparison
@@ -73,15 +77,21 @@ class ControllerDisplayNotes extends DefaultAbstractController
 				}
 			}
 
-			if ((!empty($note) || $note === '0') && !$match) {
-				$noteData = [
-					'id' => $id,
-					'result' => $note
-				];
-				$notesData[] = $noteData;
-			}
+			$noteData = [
+				'id' => $id,
+				'result' => $note
+			];
+			if ((!empty($note) || $note === '0') && !$match) $notesData[] = $noteData;
+			elseif (empty($note)) $notesToDelete[] = $noteData;
 		}
-		$updateErrors = $this->dataManager->updateNotes($notesData);
-		return !in_array(FALSE, $updateErrors);
+
+		if (!empty($notesData)) $updateErrors = $this->dataManager->updateNotes($notesData);
+		if (!empty($notesToDelete)) $deleteErrors = $this->dataManager->deleteNotes($notesToDelete);
+
+		$transactionErrors = array_merge($updateErrors, $deleteErrors);
+
+
+		// check database operations errors
+		return !in_array(FALSE, $transactionErrors);
 	}
 }
