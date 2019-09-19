@@ -3,6 +3,7 @@
 /** @noinspection PhpUndefinedMethodInspection */
 ?>
 <section class="addNotes">
+    <h3 class="sectionTitle mb-5">Ajout de notes</h3>
     <h3>Choisissez une classe</h3>
     <section class="sectionSelection">
         <form action="" method="post" id="form"></form>

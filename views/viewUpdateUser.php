@@ -3,6 +3,7 @@
 /** @noinspection PhpUndefinedMethodInspection */
 ?>
 <section class="updateUser">
+    <h3 class="sectionTitle mb-4">Edition d'utilisateur</h3>
     <section class="userSelection">
         <form action="" method="post" id="form"></form>
         <div>

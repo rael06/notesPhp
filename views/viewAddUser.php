@@ -4,6 +4,7 @@
 ?>
 
 <section class="addUser">
+    <h3 class="sectionTitle mb-5">Ajout d'utilisateurs</h3>
     <h3>Ajout d'un nouvel utilisateur</h3>
     <form action="" method="post">
 		<?= isset($errors['emptyLogin']) ? "<p class='error'>Veuillez remplir ce champ ! </p>" : null ?>
@@ -34,6 +35,7 @@
 
         <label>Section
             <select name="section">
+                <option value="0">Sans</option>
 				<?php foreach ($classes as $c) : ?>
                     <option <?= isset($_POST['section']) && $_POST['section'] === $c->getId() ? 'selected' : null ?>
                             value="<?= $c->getId() ?>"><?= $c->getSection() ?>
